@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &74055964086103607
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7334262493172842101}
+  - component: {fileID: 4214072397618515370}
+  - component: {fileID: 2052116896321268381}
+  m_Layer: 0
+  m_Name: TutorialManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7334262493172842101
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74055964086103607}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.88, y: 1.80981, z: -29.11911}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4214072397618515370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74055964086103607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc885fa779e37114690d28a413182f9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialRooms:
+  - roomName: Room1
+    entryTriggerPoint: {fileID: 0}
+    airWallPrefab: {fileID: 9153132954390965868, guid: 641dfc9c6b9379a479682cb353ca5467, type: 3}
+    airWallSpawnPoint: {fileID: 0}
+    taskType: 0
+    requiredCount: 3
+    taskDescriptionFormat: Try to immunite attacks by switch to same color
+    EnemyPrefab: {fileID: 1080102387457507628, guid: 5f0aa2c0a585e0442b27b77bfb4fd346, type: 3}
+    EnemySpawnPoint: {fileID: 0}
+    enemyCount: 1
+    spawnEnemiesImmediately: 1
+  showDebugLogs: 0
+--- !u!114 &2052116896321268381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74055964086103607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a94b31bdf52bd9488e84e0860554b59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  taskUIPrefab: {fileID: 0}
+  taskUIParent: {fileID: 0}
+  taskConfigs:
+  - taskType: 0
+    descriptionFormat: Try to immunite attacks by switch to same color
+    completeColor: {r: 0, g: 1, b: 0.01848054, a: 0}

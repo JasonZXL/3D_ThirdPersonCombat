@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{8BD133AA-96FC-03E1-C1AC-FD63C8D749AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "URPWizard", "URPWizard.csproj", "{2090B1A9-7B4F-0F43-60C5-E536F3E7425D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8BD133AA-96FC-03E1-C1AC-FD63C8D749AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BD133AA-96FC-03E1-C1AC-FD63C8D749AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BD133AA-96FC-03E1-C1AC-FD63C8D749AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BD133AA-96FC-03E1-C1AC-FD63C8D749AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2090B1A9-7B4F-0F43-60C5-E536F3E7425D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2090B1A9-7B4F-0F43-60C5-E536F3E7425D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2090B1A9-7B4F-0F43-60C5-E536F3E7425D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2090B1A9-7B4F-0F43-60C5-E536F3E7425D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

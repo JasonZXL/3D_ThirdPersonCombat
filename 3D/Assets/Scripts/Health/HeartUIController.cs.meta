@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e6b22c2aa73c1a945b5c5dd9151c7e30
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - heartPrefab: {fileID: 4388779264796338792, guid: 305ae93d471c59b419d8c68321e1dbab, type: 3}
+  - heartsContainer: {fileID: 5615219251414143167, guid: 7e7dbd310448b86429079b8289062a6a, type: 3}
+  - fullHeartSprite: {fileID: 21300000, guid: 31e38f271ae340c4eb4bece392493d8b, type: 3}
+  - emptyHeartSprite: {fileID: 21300000, guid: 5b8462c1dfd6f7e48b2246fe536e7235, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
