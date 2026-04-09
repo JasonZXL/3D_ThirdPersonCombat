@@ -84,6 +84,8 @@ public class ColorInteractionManager : MonoBehaviour
     {
         if (showDebugLogs) Debug.Log($"HandleCollisionInteraction called: {interaction.Source?.name} -> {interaction.Target?.name}, type: {interaction.Type}");
 
+        if (interaction.Source == null || interaction.Target == null) return;
+
         bool isSourceEnemy = interaction.Source.CompareTag("Enemy");
         bool isSourceObject = interaction.Source.CompareTag("Object");
         bool isTargetEnemy = interaction.Target.CompareTag("Enemy");
@@ -105,9 +107,12 @@ public class ColorInteractionManager : MonoBehaviour
             return;
         }
 
-        if ((!isSourceEnemy && !isSourceObject) || (!isTargetEnemy && !isTargetObject))
+        // 统一处理 Object-Enemy 接触，不再依赖 Source/Target 方向决定逻辑
+        if ((isSourceObject && isTargetEnemy) || (isSourceEnemy && isTargetObject))
         {
-            if (showDebugLogs) Debug.Log($"Skipping collision: not enemy/object collision");
+            GameObject objectGO = isSourceObject ? interaction.Source : interaction.Target;
+            GameObject enemyGO  = isSourceEnemy  ? interaction.Source : interaction.Target;
+            HandleObjectEnemyContact(objectGO, enemyGO, interaction);
             return;
         }
 
@@ -119,22 +124,18 @@ public class ColorInteractionManager : MonoBehaviour
             if (showDebugLogs) Debug.LogWarning("Collision interaction failed: missing color component");
             return;
         }
-        
-        if (isSourceObject && isTargetEnemy)
-        {
-            HandleObjectToEnemyCollision(interaction, sourceColorComp, targetColorComp);
-        }
-        else if (isSourceEnemy && isTargetObject)
-        {
-            HandleEnemyToObjectCollision(interaction, sourceColorComp, targetColorComp);
-        }
-        else if (isSourceEnemy && isTargetEnemy)
+
+        if (isSourceEnemy && isTargetEnemy)
         {
             HandleEnemyToEnemyCollision(interaction, sourceColorComp, targetColorComp);
         }
         else if (isSourceObject && isTargetObject)
         {
             HandleObjectToObjectCollision(interaction, sourceColorComp, targetColorComp);
+        }
+        else
+        {
+            if (showDebugLogs) Debug.Log($"Skipping collision: unrecognized tag combination");
         }
     }
     #endregion
@@ -556,6 +557,157 @@ public class ColorInteractionManager : MonoBehaviour
     #endregion
 
     #region Enemy-Object Collision Handling
+
+    // -----------------------------------------------------------------------
+    // 统一入口：不再依赖 interaction.Source/Target 的方向语义来决定逻辑分支
+    // -----------------------------------------------------------------------
+    private void HandleObjectEnemyContact(GameObject objectGO, GameObject enemyGO, ColorInteractionEvent interaction)
+    {
+        if (showDebugLogs) Debug.Log($"HandleObjectEnemyContact: object={objectGO.name}, enemy={enemyGO.name}");
+
+        KnockbackSystem objectKB = objectGO.GetComponent<KnockbackSystem>();
+        KnockbackSystem enemyKB  = enemyGO.GetComponent<KnockbackSystem>();
+
+        bool objectActive = objectKB != null && objectKB.IsKnockbackActive;
+        bool enemyActive  = enemyKB  != null && enemyKB.IsKnockbackActive;
+
+        if (objectActive && !enemyActive)
+        {
+            if (showDebugLogs) Debug.Log($"  -> Object is attacker");
+            ResolveObjectHitsEnemy(objectGO, enemyGO);
+            return;
+        }
+
+        if (enemyActive && !objectActive)
+        {
+            if (showDebugLogs) Debug.Log($"  -> Enemy is attacker");
+            ResolveEnemyHitsObject(enemyGO, objectGO);
+            return;
+        }
+
+        if (objectActive && enemyActive)
+        {
+            // 双方都在击退中：优先视 object 为主动撞击者
+            if (showDebugLogs) Debug.Log($"  -> Both active, prioritizing object as attacker");
+            ResolveObjectHitsEnemy(objectGO, enemyGO);
+            return;
+        }
+
+        // 双方都不在击退中：无效接触，忽略
+        if (showDebugLogs) Debug.Log($"  -> Neither active, ignoring contact");
+    }
+
+    // Object 撞 Enemy 的统一结算
+    private void ResolveObjectHitsEnemy(GameObject objectGO, GameObject enemyGO)
+    {
+        if (showDebugLogs) Debug.Log($"ResolveObjectHitsEnemy: object={objectGO.name}, enemy={enemyGO.name}");
+
+        ColorComponent objectColor = objectGO.GetComponent<ColorComponent>();
+        ColorComponent enemyColor  = enemyGO.GetComponent<ColorComponent>();
+
+        if (objectColor == null || enemyColor == null) return;
+
+        bool opposite = objectColor.IsOppositeColor(enemyColor);
+
+        if (opposite)
+        {
+            ApplyEnemyDamageFromObject(enemyGO, objectGO);
+            ApplyEnemyKnockbackFromObject(enemyGO, objectGO);
+            SpawnCollisionEffect(objectGO, enemyGO);
+        }
+        else
+        {
+            if (showDebugLogs) Debug.Log($"  Same color -> no damage/knockback to enemy");
+        }
+
+        StopKnockbackFor(objectGO);
+    }
+
+    // Enemy 撞 Object 的统一结算
+    private void ResolveEnemyHitsObject(GameObject enemyGO, GameObject objectGO)
+    {
+        if (showDebugLogs) Debug.Log($"ResolveEnemyHitsObject: enemy={enemyGO.name}, object={objectGO.name}");
+
+        ColorComponent enemyColor  = enemyGO.GetComponent<ColorComponent>();
+        ColorComponent objectColor = objectGO.GetComponent<ColorComponent>();
+
+        if (enemyColor == null || objectColor == null) return;
+
+        bool opposite = enemyColor.IsOppositeColor(objectColor);
+
+        if (opposite)
+        {
+            EnemyHealthSystem enemyHealth = enemyGO.GetComponent<EnemyHealthSystem>();
+            if (enemyHealth != null)
+                enemyHealth.TakeDamage((int)knockbackObjectSelfDamage, objectGO);
+
+            SpawnCollisionEffect(enemyGO, objectGO);
+        }
+        else
+        {
+            if (showDebugLogs) Debug.Log($"  Same color -> no damage to enemy");
+        }
+
+        StopKnockbackFor(enemyGO);
+    }
+
+    // 对 enemy 施加来自 object 的伤害
+    private void ApplyEnemyDamageFromObject(GameObject enemyGO, GameObject objectGO)
+    {
+        EnemyHealthSystem enemyHealth = enemyGO.GetComponent<EnemyHealthSystem>();
+        if (enemyHealth != null)
+        {
+            enemyHealth.TakeDamage((int)knockbackObjectSelfDamage, objectGO);
+            if (showDebugLogs) Debug.Log($"  Enemy {enemyGO.name} took {knockbackObjectSelfDamage} damage from object {objectGO.name}");
+        }
+    }
+
+    // 对 enemy 施加来自 object 的击退
+    private void ApplyEnemyKnockbackFromObject(GameObject enemyGO, GameObject objectGO)
+    {
+        if (enableBilliardPhysics && restrictToHorizontal)
+        {
+            if (showDebugLogs) Debug.Log($"  Applying billiard physics knockback to enemy {enemyGO.name}");
+            // 复用已有的台球物理，构造一个临时 interaction 仅用于传参
+            ColorInteractionEvent dummyInteraction = new ColorInteractionEvent
+            {
+                Source = objectGO,
+                Target = enemyGO,
+                Type   = ColorInteractionType.Collision
+            };
+            ApplyBilliardPhysicsToEnemy(enemyGO, objectGO, dummyInteraction);
+        }
+        else
+        {
+            if (showDebugLogs) Debug.Log($"  Applying simple directional knockback to enemy {enemyGO.name}");
+            ApplyRepulseEffectToEnemyInDirectionFromObject(enemyGO, objectGO);
+        }
+    }
+
+    // 停止某个 GameObject 的击退状态
+    private void StopKnockbackFor(GameObject go)
+    {
+        KnockbackSystem kb = go.GetComponent<KnockbackSystem>();
+        KnockbackCollisionDetector detector = go.GetComponent<KnockbackCollisionDetector>();
+
+        if (kb != null) kb.ForceStopKnockback();
+        if (detector != null) detector.StopKnockback();
+        if (showDebugLogs) Debug.Log($"  Stopped knockback for {go.name}");
+    }
+
+    // 在两个对象中间生成碰撞特效
+    private void SpawnCollisionEffect(GameObject a, GameObject b)
+    {
+        if (knockbackCollisionEffect != null)
+        {
+            Vector3 effectPos = (GetEffectPosition(a) + GetEffectPosition(b)) * 0.5f;
+            Instantiate(knockbackCollisionEffect, effectPos, Quaternion.identity);
+        }
+    }
+
+    // -----------------------------------------------------------------------
+    // 旧方法保留（不再从 HandleCollisionInteraction 直接调用，供兼容/复用）
+    // -----------------------------------------------------------------------
     private void HandleEnemyToEnemyCollision(ColorInteractionEvent interaction, ColorComponent sourceColor, ColorComponent targetColor)
     {
         KnockbackSystem sourceKnockback = interaction.Source.GetComponent<KnockbackSystem>();
@@ -585,6 +737,8 @@ public class ColorInteractionManager : MonoBehaviour
         }
     }
 
+    // [已废弃] 不再从 HandleCollisionInteraction 调用。
+    // 逻辑已迁移至 ResolveObjectHitsEnemy，内部逻辑保留供参考/过渡期兼容。
     private void HandleObjectToEnemyCollision(ColorInteractionEvent interaction, ColorComponent sourceColor, ColorComponent targetColor)
     {
         if (showDebugLogs) Debug.Log($"  Entering HandleObjectToEnemyCollision: {interaction.Source.name} -> {interaction.Target.name}");
@@ -667,6 +821,8 @@ public class ColorInteractionManager : MonoBehaviour
         }
     }
 
+    // [已废弃] 不再从 HandleCollisionInteraction 调用。
+    // 逻辑已迁移至 ResolveEnemyHitsObject，内部逻辑保留供参考/过渡期兼容。
     private void HandleEnemyToObjectCollision(ColorInteractionEvent interaction, ColorComponent sourceColor, ColorComponent targetColor)
     {
         if (showDebugLogs) Debug.Log($"Processing enemy->object collision: {interaction.Source.name} -> {interaction.Target.name}");

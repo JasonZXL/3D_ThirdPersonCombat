@@ -5434,7 +5434,7 @@ MonoBehaviour:
   pickupCooldown: 0.15
   objectPrefab: {fileID: 1411067630486555829, guid: 66699746a3638904a8b9b6d6d7d4cfff, type: 3}
   firePoint: {fileID: 2253544659881141816}
-  throwDistance: 70
+  throwDistance: 100
   minThrowDistance: 50
   aimHitMask:
     serializedVersion: 2

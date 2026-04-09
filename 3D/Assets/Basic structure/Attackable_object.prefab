@@ -183,14 +183,14 @@ MonoBehaviour:
   - Bullet
   - Ground
   avoidDuplicateCollisions: 1
-  collisionCooldown: 0.2
+  collisionCooldown: 0.1
   alwaysShowInEditor: 0
   showWhenSelected: 1
   editorIdleColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.1}
   editorActiveColor: {r: 1, g: 0.5, b: 0, a: 0.3}
   wireframeColor: {r: 1, g: 0.5, b: 0, a: 0.8}
   enableInitialOverlapProtection: 1
-  initialOverlapProtectionDuration: 0.3
+  initialOverlapProtectionDuration: 0.1
   initialOverlapSizeMultiplier: 0.1
 --- !u!114 &1782131390430030715
 MonoBehaviour:
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ed734961f96194408f1bc3fe48e5e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackSpeed: 15
+  knockbackSpeed: 20
   knockbackDuration: 0.5
   knockbackCurve:
     serializedVersion: 2

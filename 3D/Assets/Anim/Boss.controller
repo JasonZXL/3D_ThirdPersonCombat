@@ -9,7 +9,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsRetreating
+    m_ConditionEvent: isRetreating
     m_EventTreshold: 0
   - m_ConditionMode: 3
     m_ConditionEvent: speed
@@ -190,7 +190,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: IsRetreating
+  - m_Name: isRetreating
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -282,7 +282,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: IsRetreating
+    m_ConditionEvent: isRetreating
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7079900665785681617}

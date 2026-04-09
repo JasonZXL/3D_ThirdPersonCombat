@@ -401,6 +401,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: -1356944241255443110, guid: 2d226e59912d0014fbf2646ed5c4b916, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: -739867066570909723, guid: 2d226e59912d0014fbf2646ed5c4b916, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -549,9 +553,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 6666603822528672967, guid: 2d226e59912d0014fbf2646ed5c4b916, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 7036213049465896255, guid: 2d226e59912d0014fbf2646ed5c4b916, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036213049465896255, guid: 2d226e59912d0014fbf2646ed5c4b916, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7107744525600387852, guid: 2d226e59912d0014fbf2646ed5c4b916, type: 3}
       propertyPath: m_Layer
@@ -703,7 +715,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.6
   m_Height: 3.6
   m_Direction: 1
   m_Center: {x: 0, y: 1.71, z: 0}
@@ -735,8 +747,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoColorChangeInterval: 7
   startOnAwake: 1
-  changeOnSameColorAttack: 0
-  changeOnSameColorHit: 0
+  changeOnSameColorAttack: 1
+  changeOnSameColorHit: 1
   showDebugLogs: 0
 --- !u!114 &1647834057190935858
 MonoBehaviour:
@@ -831,7 +843,7 @@ MonoBehaviour:
   customBoundsMax: {x: 0.5, y: 2, z: 0.5}
   showDebugLogs: 1
   showDebugVisuals: 0
-  checkFrequency: 0.3
+  checkFrequency: 0.1
   detectionLayers:
     serializedVersion: 2
     m_Bits: 896
@@ -844,14 +856,14 @@ MonoBehaviour:
   - Untagged
   - Player
   avoidDuplicateCollisions: 1
-  collisionCooldown: 0.15
+  collisionCooldown: 0.1
   alwaysShowInEditor: 0
   showWhenSelected: 1
   editorIdleColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.1}
   editorActiveColor: {r: 1, g: 0.5, b: 0, a: 0.3}
   wireframeColor: {r: 1, g: 0.5, b: 0, a: 0.8}
   enableInitialOverlapProtection: 1
-  initialOverlapProtectionDuration: 0.25
+  initialOverlapProtectionDuration: 0.1
   initialOverlapSizeMultiplier: 0.1
 --- !u!114 &1927205702930400415
 MonoBehaviour:
@@ -909,7 +921,7 @@ MonoBehaviour:
   enablePreciseCollision: 1
   enablePenetrationCorrection: 1
   enableStateCollisionDetection: 1
-  showDebugLogs: 0
+  showDebugLogs: 1
   showDebugGizmos: 0
   gizmoRayColor: {r: 0, g: 1, b: 1, a: 1}
   gizmoHitColor: {r: 1, g: 0, b: 0, a: 1}

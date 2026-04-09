@@ -69,6 +69,12 @@ public class BossRangedModule : MonoBehaviour
 
     [Header("移动组件")]
     [SerializeField] private CharacterController characterController;
+    [Header("动画引用")]
+    [SerializeField] private Animator animator;
+    [Header("动画参数")]
+    [SerializeField] private string speedParam = "speed";
+    [SerializeField] private string isMovingParam = "isMoving";
+    [SerializeField] private string isRetreatingParam = "isRetreating";
 
     [Header("Debug")]
     [SerializeField] private bool showDebugLogs = true;
@@ -102,6 +108,9 @@ public class BossRangedModule : MonoBehaviour
         AutoWire(includeInactive: true);
         if (stunController == null)
             stunController = GetComponent<ChasingEnemyStunController>();
+        
+        if (animator == null)
+            animator = GetComponent<Animator>();
     }
 
     #region Public API
@@ -213,6 +222,9 @@ public class BossRangedModule : MonoBehaviour
                 TickRetreating(dist);
                 break;
         }
+
+        // 每帧同步 Animator speed 参数（攻击静止时为 0，撤退移动时 > 0）
+        UpdateAnimatorSpeed();
     }
 
     public void ForceStopAllBehaviors(string reason = "")
@@ -229,6 +241,14 @@ public class BossRangedModule : MonoBehaviour
         attackTimer = 0f;
         retreatStateTimer = 0f;
         consecutiveSampleFailures = 0;
+
+        // 强制将所有动画参数归零，确保动画回到待机
+        if (animator != null)
+        {
+            animator.SetFloat(speedParam, 0f);
+            animator.SetBool(isMovingParam, false);
+            animator.SetBool(isRetreatingParam, false);
+        }
         
         // ✅ 修复：不要重置 hasTriggeredStuckEvent！让它保持 true 直到状态改变
         // hasTriggeredStuckEvent = false;  // 已删除这行
@@ -579,6 +599,38 @@ public class BossRangedModule : MonoBehaviour
 
         Quaternion targetRot = Quaternion.LookRotation(dir.normalized, Vector3.up);
         bodyTransform.rotation = Quaternion.Slerp(bodyTransform.rotation, targetRot, Time.deltaTime * 8f);
+    }
+
+    /// <summary>
+    /// 根据 NavMeshAgent / CharacterController 的实际速度更新 Animator speed 参数。
+    /// speed > 0 时自动触发行走动画，speed == 0 时回到待机动画。
+    /// </summary>
+    private void UpdateAnimatorSpeed()
+    {
+        if (animator == null) return;
+
+        float speed = 0f;
+
+        // 优先使用 CharacterController 的实际速度
+        if (characterController != null)
+        {
+            Vector3 horizontalVel = characterController.velocity;
+            horizontalVel.y = 0f;
+            speed = horizontalVel.magnitude;
+        }
+        else if (navAgent != null && navAgent.isOnNavMesh)
+        {
+            // 回退：使用 NavMeshAgent 的速度
+            Vector3 horizontalVel = navAgent.velocity;
+            horizontalVel.y = 0f;
+            speed = horizontalVel.magnitude;
+        }
+
+        bool isMoving = speed > 0.01f;
+
+        animator.SetFloat(speedParam, speed);
+        animator.SetBool(isMovingParam, isMoving);
+        animator.SetBool(isRetreatingParam, state == RangedState.Retreating);
     }
 
     private void FireProjectile()

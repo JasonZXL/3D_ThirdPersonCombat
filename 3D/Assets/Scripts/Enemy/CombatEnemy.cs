@@ -57,6 +57,17 @@ public class CombatEnemy : BaseEnemy, IKnockbackReceiver
     [SerializeField] private float repositionRandomDelayMax = 0.3f; // 归位进入前随机延迟最大值
     #endregion
 
+    #region 包围意识设置
+    [Header("包围意识设置")]
+    [SerializeField] private bool enableEncirclement = true;              // 是否启用包围槽位逻辑
+    [SerializeField] private float encircleRadiusRatio = 0.65f;           // 包围点在内外环之间的比例位置
+    [SerializeField] private float slotAngleJitter = 15f;                 // 包围角度的随机抖动（度）
+    [SerializeField] private float slotRepathInterval = 1.2f;             // 包围目标点刷新间隔（秒）
+    [SerializeField] private float allyAvoidanceRadius = 1.8f;            // 同伴排斥检测半径
+    [SerializeField] private float allyAvoidanceStrength = 1.2f;          // 同伴排斥推力强度
+    [SerializeField] private float attackPermissionCheckInterval = 0.25f; // 攻击许可检查间隔（秒）
+    #endregion
+
     #region 调试设置
     [Header("调试设置")]
     [SerializeField] private bool showStateDebug = true;
@@ -85,6 +96,14 @@ public class CombatEnemy : BaseEnemy, IKnockbackReceiver
 
     // 状态标志
     private bool resetTimerOnNextRoam = true; // 进入Roam时是否重置倒计时
+
+    // 包围意识变量
+    private float personalAngleOffset;      // 个体角度偏好，避免所有敌人站位整齐
+    private int preferredOrbitDirection;    // 个体绕圈方向偏好（+1 或 -1）
+    private float personalRadiusOffset;     // 个体对包围半径的微偏移
+    private float lastEncircleTargetTime = -999f;        // 上次刷新包围目标点的时间
+    private float lastAttackPermissionCheckTime = -999f; // 上次检查攻击许可的时间
+    private Vector3 currentEncircleTarget;  // 当前选中的包围目标点
     #endregion
 
     #region Unity生命周期
@@ -93,6 +112,7 @@ public class CombatEnemy : BaseEnemy, IKnockbackReceiver
         base.Awake();
         InitializeComponents();
         FindPlayer();
+        InitializeEncirclementPersonality();
     }
 
     private void Start()
@@ -139,6 +159,17 @@ public class CombatEnemy : BaseEnemy, IKnockbackReceiver
         {
             Debug.LogWarning($"⚠️ CombatEnemy [{gameObject.name}] 未找到Player标签对象！");
         }
+    }
+
+    /// <summary>初始化每只敌人的包围意识个体差异</summary>
+    private void InitializeEncirclementPersonality()
+    {
+        personalAngleOffset = Random.Range(-20f, 20f);
+        preferredOrbitDirection = Random.value < 0.5f ? -1 : 1;
+        personalRadiusOffset = Random.Range(-0.4f, 0.4f);
+
+        if (showStateDebug)
+            Debug.Log($"⚔️ CombatEnemy 包围个性: angleOffset={personalAngleOffset:F1}, orbitDir={preferredOrbitDirection}, radiusOffset={personalRadiusOffset:F2}");
     }
     #endregion
 
@@ -263,25 +294,41 @@ public class CombatEnemy : BaseEnemy, IKnockbackReceiver
 
         while (currentState == CombatEnemyState.Roam)
         {
-            // 更新漫游目标点
-            if (Time.time - lastRoamTargetTime > roamTargetUpdateInterval)
+            // 更新漫游/包围目标点
+            if (Time.time - lastEncircleTargetTime > slotRepathInterval)
             {
-                Vector3 roamTarget = GetRandomPointInRing(player.position, innerRadius, outerRadius);
+                Vector3 roamTarget = enableEncirclement
+                    ? CalculateEncircleTarget()
+                    : GetRandomPointInRing(player.position, innerRadius, outerRadius);
+
                 if (NavMesh.SamplePosition(roamTarget, out NavMeshHit hit, 2f, NavMesh.AllAreas))
                 {
+                    currentEncircleTarget = hit.position;
                     navAgent.SetDestination(hit.position);
                 }
-                lastRoamTargetTime = Time.time;
+                lastEncircleTargetTime = Time.time;
+                // 兼容旧字段，保持两者同步
+                lastRoamTargetTime = lastEncircleTargetTime;
             }
 
             // 攻击倒计时递减
             attackTimer -= Time.deltaTime;
             if (attackTimer <= 0f)
             {
-                if (showStateDebug)
-                    Debug.Log($"⚔️ [Roam] 攻击倒计时结束 → Attack");
-                SwitchState(CombatEnemyState.Attack);
-                yield break;
+                if (CanStartAttackNow())
+                {
+                    if (showStateDebug)
+                        Debug.Log($"⚔️ [Roam] 攻击倒计时结束，获得攻击许可 → Attack");
+                    SwitchState(CombatEnemyState.Attack);
+                    yield break;
+                }
+                else
+                {
+                    // 没轮到，继续包围，稍作等待再尝试
+                    if (showStateDebug)
+                        Debug.Log($"⚔️ [Roam] 攻击倒计时到但未获许可，延迟等待");
+                    attackTimer = Random.Range(0.4f, 1.0f);
+                }
             }
 
             // 距离越界检查
@@ -361,9 +408,22 @@ public class CombatEnemy : BaseEnemy, IKnockbackReceiver
         }
     }
 
-    /// <summary>根据当前距离计算归位目标</summary>
+    /// <summary>根据当前距离计算归位目标：优先归回包围槽位，不可用时回退到距离修正</summary>
     private Vector3 CalculateRepositionTarget(float dist)
     {
+        // 若包围意识启用，优先尝试归回自己的包围槽位点
+        if (enableEncirclement)
+        {
+            Vector3 encircleTarget = CalculateEncircleTarget();
+            if (NavMesh.SamplePosition(encircleTarget, out NavMeshHit encircleHit, 3f, NavMesh.AllAreas))
+            {
+                if (showStateDebug)
+                    Debug.Log($"🔀 [Reposition] 归回包围槽位: {encircleHit.position}");
+                return encircleHit.position;
+            }
+        }
+
+        // 回退：原始距离纠偏逻辑
         Vector3 dirFromPlayer = (transform.position - player.position);
         dirFromPlayer.y = 0f;
 
@@ -625,6 +685,100 @@ public class CombatEnemy : BaseEnemy, IKnockbackReceiver
         transform.rotation = Quaternion.LookRotation(dir.normalized);
     }
 
+    // ─── 包围意识辅助 ───
+
+    /// <summary>计算当前敌人的包围目标点（考虑个体偏好和同伴排斥）</summary>
+    private Vector3 CalculateEncircleTarget()
+    {
+        if (player == null) return transform.position;
+
+        Vector3 toEnemy = transform.position - player.position;
+        toEnemy.y = 0f;
+        if (toEnemy == Vector3.zero) toEnemy = transform.forward;
+
+        Vector3 baseDir = toEnemy.normalized;
+
+        // 切线方向：让敌人倾向绕圈而非只前后收缩
+        Vector3 tangent = Vector3.Cross(Vector3.up, baseDir) * preferredOrbitDirection;
+
+        float orbitBlend = 0.65f;
+        Vector3 desiredDir = Vector3.Slerp(baseDir, tangent.normalized, orbitBlend).normalized;
+
+        // 叠加个体角度偏好和随机抖动
+        float angleJitter = Random.Range(-slotAngleJitter, slotAngleJitter);
+        desiredDir = Quaternion.Euler(0f, personalAngleOffset + angleJitter, 0f) * desiredDir;
+
+        float targetRadius = Mathf.Lerp(innerRadius, outerRadius, encircleRadiusRatio) + personalRadiusOffset;
+        Vector3 rawTarget = player.position + desiredDir * targetRadius;
+        rawTarget.y = transform.position.y;
+
+        return ApplyAllyAvoidance(rawTarget);
+    }
+
+    /// <summary>对目标点施加同伴排斥，防止多个敌人扎堆到同一方向</summary>
+    private Vector3 ApplyAllyAvoidance(Vector3 targetPos)
+    {
+        Collider[] hits = Physics.OverlapSphere(targetPos, allyAvoidanceRadius);
+        Vector3 push = Vector3.zero;
+
+        foreach (Collider hit in hits)
+        {
+            if (hit.gameObject == gameObject) continue;
+
+            CombatEnemy other = hit.GetComponentInParent<CombatEnemy>();
+            if (other == null || other == this) continue;
+
+            Vector3 away = targetPos - other.transform.position;
+            away.y = 0f;
+
+            float dist = away.magnitude;
+            if (dist <= 0.01f) continue;
+
+            float weight = 1f - Mathf.Clamp01(dist / allyAvoidanceRadius);
+            push += away.normalized * weight;
+        }
+
+        if (push != Vector3.zero)
+            targetPos += push.normalized * allyAvoidanceStrength;
+
+        return targetPos;
+    }
+
+    /// <summary>检查当前帧是否允许本敌人发起攻击（攻击轮换：仅离玩家最近的1~2只可出手）</summary>
+    private bool CanStartAttackNow()
+    {
+        if (player == null) return true;
+
+        // 节流：避免每帧都做 OverlapSphere
+        if (Time.time - lastAttackPermissionCheckTime < attackPermissionCheckInterval)
+            return true; // 节流期间默认放行，防止永远卡住
+
+        lastAttackPermissionCheckTime = Time.time;
+
+        Collider[] hits = Physics.OverlapSphere(player.position, outerRadius + 2f);
+        int closerCount = 0;
+        float myDist = GetHorizontalDistanceToPlayer();
+
+        foreach (Collider hit in hits)
+        {
+            CombatEnemy other = hit.GetComponentInParent<CombatEnemy>();
+            if (other == null || other == this) continue;
+
+            Vector3 otherFlat = new Vector3(other.transform.position.x, 0f, other.transform.position.z);
+            Vector3 playerFlat = new Vector3(player.position.x, 0f, player.position.z);
+            float otherDist = Vector3.Distance(otherFlat, playerFlat);
+
+            if (otherDist < myDist)
+                closerCount++;
+        }
+
+        // 比我更近的敌人少于2只时，允许出手
+        bool canAttack = closerCount < 2;
+        if (showStateDebug)
+            Debug.Log($"⚔️ [CanStartAttackNow] myDist={myDist:F1}, closerCount={closerCount}, canAttack={canAttack}");
+        return canAttack;
+    }
+
     // ─── 动画辅助 ───
     private void SetAnimatorTrigger(string triggerName)
     {
@@ -692,7 +846,9 @@ public class CombatEnemy : BaseEnemy, IKnockbackReceiver
                 $"状态: {currentState}\n" +
                 $"距玩家: {dist:F1}m\n" +
                 $"攻击倒计时: {attackTimer:F1}s\n" +
-                $"resetTimer: {resetTimerOnNextRoam}"
+                $"resetTimer: {resetTimerOnNextRoam}\n" +
+                $"angleOffset: {personalAngleOffset:F1} orbitDir: {preferredOrbitDirection}\n" +
+                $"encircle: {enableEncirclement}"
             );
         }
 #endif
