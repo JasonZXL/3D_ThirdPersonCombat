@@ -150,6 +150,37 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
+--- !u!1 &4825532408904182237
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7621694493942713465}
+  m_Layer: 8
+  m_Name: attackpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7621694493942713465
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4825532408904182237}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.7, y: 184.1, z: -233}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3835738721229354742}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7398989697614975707
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,15 +242,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2d226e59912d0014fbf2646ed5c4b916, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.3663969
+      value: -6.97272
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2d226e59912d0014fbf2646ed5c4b916, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -9.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2d226e59912d0014fbf2646ed5c4b916, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.961023
+      value: -34.92703
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2d226e59912d0014fbf2646ed5c4b916, type: 3}
       propertyPath: m_LocalRotation.w
@@ -603,6 +634,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2d226e59912d0014fbf2646ed5c4b916, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2812414189741252358}
+    - targetCorrespondingSourceObject: {fileID: -5166024647972804298, guid: 2d226e59912d0014fbf2646ed5c4b916, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7621694493942713465}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2d226e59912d0014fbf2646ed5c4b916, type: 3}
       insertIndex: -1
@@ -956,28 +990,80 @@ MonoBehaviour:
   initialColor: 0
   showDebugLogs: 1
   innerRadius: 3
-  outerRadius: 7
-  roamSpeed: 2
-  repositionSpeed: 4
+  outerRadius: 10
   chargeSpeed: 7
   rotationSpeed: 8
-  roamTargetUpdateInterval: 2
-  repositionCheckInterval: 0.5
   repositionTargetMargin: 0.5
-  minAttackDelay: 1
-  maxAttackDelay: 3
-  attackRange: 1.5
+  attackRange: 3
   attackAnimDuration: 0.5
   retreatMargin: 1
   giveUpChaseDistance: 20
+  pressureMinDuration: 2
+  probeMinDuration: 2
+  commitDuration: 2
+  recoverDuration: 0.5
+  recoverStepBackDistance: 1.2
+  recoverStepBackChance: 0.6
+  recoverRepathDistance: 0.2
+  pressureSpeed: 3
+  probeSpeed: 1
+  recoverMoveSpeed: 2
+  resetSpacingSpeed: 3.5
+  commitFlashFx: {fileID: 771267561588584496, guid: 85a2aa36d8b8b6649bc4c46352f6e0ee, type: 3}
+  commitForwardStep: 0.8
+  commitCancelDistance: 2.5
+  commitAttackIntentThreshold: 60
+  standoffIntentGainPerSecond: 16
+  retaliationDecayPerSecond: 20
+  retaliationGainOnPlayerHit: 35
+  retaliationConsumeOnAttack: 30
+  decisionCheckIntervalMin: 0.18
+  decisionCheckIntervalMax: 0.32
+  pressureDistanceIntentWeight: 16
+  probeDistanceIntentWeight: 22
+  closeRangeStayIntentPerSecond: 12
+  playerRetreatIntentPenaltyPerSecond: 8
+  playerApproachIntentBonus: 12
+  playerApproachSpeedThreshold: 2.5
+  playerBlindSideIntentBonus: 15
+  playerBlindSideDotThreshold: 0.15
+  aggressionBiasMin: -0.25
+  aggressionBiasMax: 0.35
+  aggressionPressureWeight: 18
+  aggressionProbeWeight: 22
+  aggressionPlayerInputWeight: 0.6
+  patienceBiasMin: -0.3
+  patienceBiasMax: 0.4
+  patienceProbeDurationWeight: 0.8
+  patienceStopChanceWeight: 0.18
+  patienceStopDurationWeight: 0.2
+  patienceStopIntervalWeight: 0.2
+  spacingBiasMin: -0.6
+  spacingBiasMax: 0.6
+  spacingPressureOffsetWeight: 0.8
+  spacingProbeOffsetWeight: 1
+  spacingResetOffsetWeight: 0.6
+  strafeBiasMin: -0.35
+  strafeBiasMax: 0.4
+  strafePressureWeight: 0.2
+  strafeProbeWeight: 0.25
+  strafePressureStepWeight: 0.35
+  strafeProbeStepWeight: 0.25
+  recoverBiasMin: -0.3
+  recoverBiasMax: 0.35
+  recoverDurationWeight: 0.35
+  recoverStepBackChanceWeight: 0.25
+  recoverStepBackDistanceWeight: 0.4
+  groupAttackCheckRadius: 6
+  maxNearbyAttackers: 1
+  groupAttackIntentPenalty: 22
+  rareOverrideAttackChance: 0.08
+  probeStrafeWeight: 0.65
+  pressureStrafeWeight: 0.3
+  probeStopChance: 0.2
+  probeStopDuration: 0.2
   stunDuration: 2
-  repositionRandomDelayMin: 0
-  repositionRandomDelayMax: 0.3
   showStateDebug: 1
-  showRangeGizmos: 1
-  innerRangeColor: {r: 1, g: 1, b: 0, a: 0.15}
-  outerRangeColor: {r: 1, g: 0, b: 0, a: 0.08}
-  attackRangeColor: {r: 1, g: 0.3, b: 0, a: 0.2}
 --- !u!114 &861165432919793434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -990,11 +1076,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5018f235320a2cd41bf2a6e959d51903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 1.5
-  attackCooldown: 2
+  attackRange: 3
+  attackOrigin: {fileID: 7621694493942713465}
 --- !u!4 &792464768777615403 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2d226e59912d0014fbf2646ed5c4b916, type: 3}
+  m_PrefabInstance: {fileID: 969927582398881728}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3835738721229354742 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -5166024647972804298, guid: 2d226e59912d0014fbf2646ed5c4b916, type: 3}
   m_PrefabInstance: {fileID: 969927582398881728}
   m_PrefabAsset: {fileID: 0}
 --- !u!137 &6196311529405718306 stripped
