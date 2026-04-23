@@ -183,11 +183,6 @@ public class KnockbackSystem : MonoBehaviour
         
         if (showDebugLogs)
             Debug.Log($"💨 {gameObject.name} 开始水平击退: {_knockbackStartPosition} → {_knockbackTargetPosition}, 方向: {_knockbackDirection}");
-        
-        if (!isObject)
-        {
-            NotifyEnemyKnockbackStart();
-        }
 
         OnKnockbackStart?.Invoke();
         
@@ -449,11 +444,6 @@ public class KnockbackSystem : MonoBehaviour
         
         if (showDebugLogs)
             Debug.Log($"🛑 {gameObject.name} 击退结束");
-        
-        if (!isObject)
-        {
-            NotifyEnemyKnockbackEnd();
-        }
 
         OnKnockbackEnd?.Invoke();
         
@@ -470,50 +460,6 @@ public class KnockbackSystem : MonoBehaviour
     }
     #endregion
     
-    #region 敌人回调通知
-    private void NotifyEnemyKnockbackStart()
-    {
-        IKnockbackReceiver receiver = GetComponent<IKnockbackReceiver>();
-        if (receiver != null)
-        {
-            receiver.OnKnockbackStart();
-            if (showDebugLogs)
-                Debug.Log($"📢 通知IKnockbackReceiver击退开始: {gameObject.name}");
-            return;
-        }
-
-        ChasingEnemy2 chasingEnemy2 = GetComponent<ChasingEnemy2>();
-        if (chasingEnemy2 != null)
-        {
-            chasingEnemy2.OnKnockbackStart();
-            if (showDebugLogs)
-                Debug.Log($"📢 通知ChasingEnemy2击退开始: {gameObject.name}");
-            return;
-        }
-    }
-
-    private void NotifyEnemyKnockbackEnd()
-    {
-        IKnockbackReceiver receiver = GetComponent<IKnockbackReceiver>();
-        if (receiver != null)
-        {
-            receiver.OnKnockbackEnd();
-            if (showDebugLogs)
-                Debug.Log($"📢 通知IKnockbackReceiver击退结束: {gameObject.name}");
-            return;
-        }
-
-        ChasingEnemy2 chasingEnemy2 = GetComponent<ChasingEnemy2>();
-        if (chasingEnemy2 != null)
-        {
-            chasingEnemy2.OnKnockbackEnd();
-            if (showDebugLogs)
-                Debug.Log($"📢 通知ChasingEnemy2击退结束: {gameObject.name}");
-            return;
-        }
-    }
-    #endregion
-    
     #region 敌人组件控制
     private void DisableEnemyComponentsDuringKnockback()
     {
@@ -526,23 +472,6 @@ public class KnockbackSystem : MonoBehaviour
             if (showDebugLogs)
                 Debug.Log($"🔧 使用IKnockbackReceiver：暂停NavMeshAgent/AttackDetector，逻辑由回调自行管理");
             return;
-        }
-
-        ChasingEnemy2 chasingEnemy2 = GetComponent<ChasingEnemy2>();
-        if (chasingEnemy2 != null)
-        {
-            StopNavAgentForKnockback();
-            SetAttackDetectorEnabled(false);
-
-            if (showDebugLogs)
-                Debug.Log($"🔧 使用ChasingEnemy2：暂停NavMeshAgent/AttackDetector，状态由回调管理");
-            return;
-        }
-
-        ChasingEnemy chasingEnemy = GetComponent<ChasingEnemy>();
-        if (chasingEnemy != null)
-        {
-            chasingEnemy.enabled = false;
         }
 
         StopNavAgentForKnockback();
@@ -616,17 +545,6 @@ public class KnockbackSystem : MonoBehaviour
 
             if (showDebugLogs)
                 Debug.Log($"🔧 使用IKnockbackReceiver：恢复NavMeshAgent/AttackDetector，逻辑由回调自行恢复");
-            return;
-        }
-
-        ChasingEnemy2 chasingEnemy2 = GetComponent<ChasingEnemy2>();
-        if (chasingEnemy2 != null)
-        {
-            RestoreNavAgentAfterKnockback();
-            SetAttackDetectorEnabled(true);
-
-            if (showDebugLogs)
-                Debug.Log($"🔧 使用ChasingEnemy2：恢复NavMeshAgent/AttackDetector，状态由回调管理");
             return;
         }
 

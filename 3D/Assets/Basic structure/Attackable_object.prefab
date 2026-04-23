@@ -244,7 +244,7 @@ MonoBehaviour:
   collisionRadius: 1.5
   skinWidth: 0.03
   maxPenetrationCorrection: 0.5
-  maxMoveStepPerFrame: 0.1
+  maxMoveStepPerFrame: 0.8
   enablePreciseCollision: 1
   enablePenetrationCorrection: 1
   enableStateCollisionDetection: 1

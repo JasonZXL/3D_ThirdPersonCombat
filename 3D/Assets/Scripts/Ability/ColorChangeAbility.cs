@@ -31,7 +31,6 @@ public class ColorChangeAbility : MonoBehaviour
     #region 能力设置
     [Header("能力设置")]
     [SerializeField] private KeyCode abilityKey = KeyCode.E;        // 能力按键
-    [SerializeField] private string abilityInputAction = "Ability"; // 新输入系统动作名
     [SerializeField] private bool useNewInputSystem = false;        // 是否使用新输入系统
     
     [Header("准备阶段设置")]

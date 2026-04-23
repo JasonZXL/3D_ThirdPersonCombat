@@ -27,6 +27,7 @@ public class ProjectileController : MonoBehaviour
     [Header("视觉效果")]
     [SerializeField] private bool rotateTowardsDirection = true;
     [SerializeField] private float rotationSpeed = 10f;
+    
     #endregion
 
     #region 枚举定义
@@ -136,10 +137,10 @@ public class ProjectileController : MonoBehaviour
         // 移动子弹
         MoveProjectile(currentSpeed);
         
-        // 旋转子弹面向移动方向
+        // 旋转子弹面向移动方向，并叠加视觉偏移
         if (rotateTowardsDirection && direction != Vector3.zero)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            Quaternion targetRotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90,0,0);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
         

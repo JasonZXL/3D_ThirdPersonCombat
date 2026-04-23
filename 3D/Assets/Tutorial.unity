@@ -8428,7 +8428,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4621256606866277952, guid: 3955b521e0db8b4439552b5fb38d68f7, type: 3}
       propertyPath: repulseForce
-      value: 50
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4621256606866277952, guid: 3955b521e0db8b4439552b5fb38d68f7, type: 3}
       propertyPath: knockbackCollisionEffect
@@ -30048,6 +30048,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 139872966509966219, guid: 422c317a7fb76f14783559b9e129bc20, type: 3}
+      propertyPath: gameSceneNames.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 139872966509966219, guid: 422c317a7fb76f14783559b9e129bc20, type: 3}
+      propertyPath: 'gameSceneNames.Array.data[3]'
+      value: Tutorial_2
+      objectReference: {fileID: 0}
     - target: {fileID: 388905266192521024, guid: 422c317a7fb76f14783559b9e129bc20, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -30099,6 +30107,10 @@ PrefabInstance:
     - target: {fileID: 889341850955321486, guid: 422c317a7fb76f14783559b9e129bc20, type: 3}
       propertyPath: m_Name
       value: ===UI===
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726852628592058686, guid: 422c317a7fb76f14783559b9e129bc20, type: 3}
+      propertyPath: menuSceneName
+      value: MainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 3642941450017123509, guid: 422c317a7fb76f14783559b9e129bc20, type: 3}
       propertyPath: m_AnchorMax.y

@@ -47,12 +47,6 @@ public class ThirdPersonMove2 : MonoBehaviour
     
     #endregion
     
-    #region 互动系统变量
-    
-    private float _interactCooldown = 0f;   // 互动冷却计时器
-    
-    #endregion
-    
     #region 判断移动状态
     
     /// <summary>获取玩家是否正在移动</summary>

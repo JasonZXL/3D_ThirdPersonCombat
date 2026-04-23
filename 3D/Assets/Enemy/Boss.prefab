@@ -616,6 +616,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialColor: 0
+  useRandomInitialColor: 1
+  redColorChance: 0.5
   showDebugLogs: 0
   phase2TriggerHP: 10
   bossHealth: {fileID: 0}
@@ -712,6 +714,10 @@ MonoBehaviour:
   phase2AngularSpeed: 720
   phase2StoppingDistance: 0.1
   characterController: {fileID: 5727817849200051676}
+  animator: {fileID: 0}
+  speedParam: speed
+  isMovingParam: isMoving
+  isRetreatingParam: isRetreating
   showDebugLogs: 1
   stunController: {fileID: 5817766385441460093}
 --- !u!114 &4647772686640474772
@@ -794,7 +800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 509d3914810809a40a39b1902736540b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 5
   turnSpeed: 3
   stoppingDistance: 1.5
   playerMoveThreshold: 1.5
@@ -812,7 +818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf2005d1829872a429b146e6ae1e9b74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stunDuration: 10
+  stunDuration: 2
   showStunDebug: 0
   stunOnKnockback: 0
   animationController: {fileID: 5380460796286913565}
@@ -902,7 +908,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  canBeKnockbacked: 1
+  canBeKnockbacked: 0
   isObject: 0
   obstacleLayerMask:
     serializedVersion: 2

@@ -234,6 +234,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3442032162526842973, guid: d5af7c0dbafceb145b130a0561aed065, type: 3}
+      propertyPath: menuSceneName
+      value: MainMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 3615102086050561535, guid: d5af7c0dbafceb145b130a0561aed065, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -320,6 +324,7 @@ MonoBehaviour:
   - Tutorial
   - Level1
   - FinalLevel
+  - Tutorial_2
   cursorVisibleInGame: 0
   lockModeInGame: 1
   cursorVisibleInMenu: 1

@@ -148,7 +148,7 @@ MonoBehaviour:
   knockbackEnemyKillDamage: 999
   knockbackObjectSelfDamage: 1
   knockbackObstacleDamage: 2
-  knockbackCollisionEffect: {fileID: 0}
+  knockbackCollisionEffect: {fileID: 771267561588584496, guid: 85a2aa36d8b8b6649bc4c46352f6e0ee, type: 3}
   showDebugLogs: 0
   enableBilliardPhysics: 1
   restrictToHorizontal: 1
@@ -334,7 +334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4214072397618515370, guid: 605b9290cbd99064e81ea162b3b4d54d, type: 3}
       propertyPath: tutorialRooms.Array.data[3].taskType
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4214072397618515370, guid: 605b9290cbd99064e81ea162b3b4d54d, type: 3}
       propertyPath: tutorialRooms.Array.data[4].roomName
@@ -363,7 +363,7 @@ PrefabInstance:
     - target: {fileID: 4214072397618515370, guid: 605b9290cbd99064e81ea162b3b4d54d, type: 3}
       propertyPath: tutorialRooms.Array.data[1].EnemyPrefab
       value: 
-      objectReference: {fileID: 3589885210564524569, guid: 135d663314cbb664b9ea7c61ff2a3f1e, type: 3}
+      objectReference: {fileID: 4024966414410383559, guid: 01f195f96c999394080baac7dd6ac269, type: 3}
     - target: {fileID: 4214072397618515370, guid: 605b9290cbd99064e81ea162b3b4d54d, type: 3}
       propertyPath: tutorialRooms.Array.data[2].EnemyPrefab
       value: 
@@ -382,7 +382,7 @@ PrefabInstance:
       objectReference: {fileID: 9153132954390965868, guid: 641dfc9c6b9379a479682cb353ca5467, type: 3}
     - target: {fileID: 4214072397618515370, guid: 605b9290cbd99064e81ea162b3b4d54d, type: 3}
       propertyPath: tutorialRooms.Array.data[1].requiredCount
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4214072397618515370, guid: 605b9290cbd99064e81ea162b3b4d54d, type: 3}
       propertyPath: tutorialRooms.Array.data[2].airWallPrefab
@@ -434,11 +434,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4214072397618515370, guid: 605b9290cbd99064e81ea162b3b4d54d, type: 3}
       propertyPath: tutorialRooms.Array.data[2].taskDescriptionFormat
-      value: Use different color object to destroy the wall
+      value: Attack objects using colors different from their own
       objectReference: {fileID: 0}
     - target: {fileID: 4214072397618515370, guid: 605b9290cbd99064e81ea162b3b4d54d, type: 3}
       propertyPath: tutorialRooms.Array.data[3].taskDescriptionFormat
-      value: Complete the Tutorials.
+      value: Complete the Tutorial_1
       objectReference: {fileID: 0}
     - target: {fileID: 4214072397618515370, guid: 605b9290cbd99064e81ea162b3b4d54d, type: 3}
       propertyPath: tutorialRooms.Array.data[4].taskDescriptionFormat

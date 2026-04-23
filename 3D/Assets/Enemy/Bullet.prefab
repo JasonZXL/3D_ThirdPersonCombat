@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7254071515626941914}
   - component: {fileID: 3250932776720010244}
   - component: {fileID: 5243842685336725386}
+  - component: {fileID: -1052403539821421415}
   m_Layer: 11
   m_Name: Bullet
   m_TagString: Enemy
@@ -174,3 +175,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentColor: 0
   showDebugLogs: 0
+--- !u!143 &-1052403539821421415
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3743525679778488397}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 1
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}

@@ -213,9 +213,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialColor: 0
+  useRandomInitialColor: 1
+  redColorChance: 0.5
   showDebugLogs: 1
   phase2TriggerHP: 10
-  bossHealth: {fileID: 0}
+  bossHealth: {fileID: 5140395598024521727}
   bossSpawnPoint: {fileID: 0}
   meleeModule: {fileID: 662953716913000744}
   rangedModule: {fileID: 7440606938646410337}
@@ -236,9 +238,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bc93301ee0671d468beb368c10eff84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossController: {fileID: 0}
-  bossHealthSystem: {fileID: 0}
-  weakPointObject: {fileID: 0}
+  bossController: {fileID: 8306306714297443200}
+  bossHealthSystem: {fileID: 5140395598024521727}
+  weakPointObject: {fileID: 3857679844249757065, guid: 447d13876a34b1949829934ab8a4bed3, type: 3}
+  customHealthFieldName: currentHearts
   bodyInvincibleInPhase2: 1
   showDebugLogs: 1
 --- !u!114 &711057891362747898
@@ -308,6 +311,10 @@ MonoBehaviour:
   phase2AngularSpeed: 720
   phase2StoppingDistance: 0.1
   characterController: {fileID: 1960683341885736572}
+  animator: {fileID: 0}
+  speedParam: speed
+  isMovingParam: isMoving
+  isRetreatingParam: isRetreating
   showDebugLogs: 1
   stunController: {fileID: 7994469717298517894}
 --- !u!114 &2320618829539142968
@@ -325,6 +332,7 @@ MonoBehaviour:
   weakPointActive: 0
   toggleColliderWithActive: 1
   weakPointPrefab: {fileID: 0}
+  weakPointVisual: {fileID: 0}
   damagePerHit: 2
   hitCooldown: 0.1
   bossHealthSystem: {fileID: 0}
@@ -377,8 +385,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf2005d1829872a429b146e6ae1e9b74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stunDuration: 3
-  showStunDebug: 0
+  stunDuration: 1.5
+  showStunDebug: 1
   stunOnKnockback: 1
   animationController: {fileID: 3273879357650690409}
 --- !u!136 &2495129054750736744

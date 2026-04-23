@@ -706,7 +706,6 @@ public class RangeEnemy2 : BaseEnemy, IKnockbackReceiver
         if (animator != null)
         {
             animator.SetBool("IsRetreating", isRetreating);
-            animator.SetBool("WalkBackwards", isRetreating);  // 兼容不同的参数名
             
             if (showStateDebug)
                 Debug.Log($"🎬 设置撤离动画: {isRetreating}");
@@ -739,8 +738,7 @@ public class RangeEnemy2 : BaseEnemy, IKnockbackReceiver
     {
         if (animator != null)
         {
-            animator.SetTrigger("Shoot");
-            animator.SetTrigger("Attack");  // 兼容不同的参数名
+            animator.SetTrigger("Attack");
             
             if (showStateDebug)
                 Debug.Log($"🎬 触发射击动画");

@@ -46,36 +46,63 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.1.0f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.1.0f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.1.0f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
+    <Analyzer Include="D:\essentail\3D\Library\PackageCache\com.unity.dt.app-ui@5d6dc8bfd8d9\Runtime\SourceGenerators\netstandard2.0\EnumToLowerCase.dll" />
+    <Analyzer Include="D:\essentail\3D\Library\PackageCache\com.unity.dt.app-ui@5d6dc8bfd8d9\Runtime\MVVM\SourceGenerators\netstandard2.0\MVVMSourceGenerators.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\ColorSystem\ColorComponent.cs" />
     <Compile Include="Assets\Scripts\Ability\SlowMotionManager.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossUI\FinalBossQTEPromptUI.cs" />
     <Compile Include="Assets\Scripts\Menu\MainMenu.cs" />
     <Compile Include="Assets\Scripts\BossRoom\Boss\BossHealthBarUI.cs" />
     <Compile Include="Assets\Scripts\Enemy\RangeEnemy2.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossPhaseOneAI\States\FinalBossPhaseOneRetreatResetState.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossData\PhaseOne\FinalBossPhaseOneStateData.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossData\PhaseOne\FinalBossPhaseOneConfig.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossData\PhaseOne\FinalBossPhaseOneSpawnIntroStateData.cs" />
+    <Compile Include="Assets\Enemy\SummonEnemyScripts\Idle\SummonerDetectionModule.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossData\PhaseOne\FinalBossPhaseOneAttackRecoverStateData.cs" />
     <Compile Include="Assets\Scripts\Enemy\ChasingEnemy\ChasingEnemyStunController.cs" />
     <Compile Include="Assets\Scripts\ColorSystem\ColorType.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossMechanics\FinalBossShockwaveEmitter.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossPhases\FinalBossStageThreeTimelineDirector.cs" />
     <Compile Include="Assets\Scripts\ColorSystem\ColorEventBus.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossPhaseOneAI\FinalBossPhaseOneContext.cs" />
     <Compile Include="Assets\Scripts\SpawnPoints\PlayerSpawnPoint.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossMechanics\FinalBossQTEBeam.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyStateCollisionDetector.cs" />
     <Compile Include="Assets\Scripts\Enemy\KnockbackSystem.cs" />
     <Compile Include="Assets\Scripts\SpawnPoints\ObjectSpawnPoint.cs" />
     <Compile Include="Assets\UnityTechnologies\StarterAssets\ThirdPersonController\Scripts\BasicRigidBodyPush.cs" />
+    <Compile Include="Assets\Enemy\SummonEnemyScripts\Alert\SummonerAlertModule.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossPhases\FinalBossStageThreeQTEController.cs" />
     <Compile Include="Assets\Scripts\Enemy\ChasingEnemy\ChasingEnemyAttackController.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossPhaseOneAI\States\FinalBossPhaseOnePrepareAttackState.cs" />
     <Compile Include="Assets\Scripts\Enemy\RangeEnemy\RangeEnemyAnimationController.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossData\StageThree\FinalBossQTEStepData.cs" />
     <Compile Include="Assets\Scripts\Ability\CD_CooldownShell.cs" />
     <Compile Include="Assets\Scripts\GameMenus\GameOver.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossData\PhaseOne\FinalBossPhaseOneApproachStateData.cs" />
     <Compile Include="Assets\UnityTechnologies\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualJoystick.cs" />
     <Compile Include="Assets\Scripts\ColorSystem\ColorVisualizer.cs" />
+    <Compile Include="Assets\Enemy\SummonEnemyScripts\Summoning\ISummonSpawnExecutor.cs" />
     <Compile Include="Assets\Scripts\Ability\ColorChangeAbility.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossPhaseOneAI\FinalBossPhaseOneAnimationBridge.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossPhaseOneAI\FinalBossPhaseOneCombatBridge.cs" />
     <Compile Include="Assets\Scripts\BossRoom\Boss\BossRangedModule.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossPhases\FinalBossQTESequenceController.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossMechanics\FinalBossResonancePillar.cs" />
+    <Compile Include="Assets\Enemy\SummonEnemyScripts\SelfDefense\SelfDefenseConfig.cs" />
     <Compile Include="Assets\Scripts\BossRoom\Boss\BossHealthSystem.cs" />
     <Compile Include="Assets\UnityTechnologies\StarterAssets\Mobile\Scripts\CanvasInputs\UICanvasControllerInput.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossData\PhaseOne\FinalBossPhaseOneIdleObserveStateData.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossPlayer\FinalBossPlayerQTEInputRouter.cs" />
     <Compile Include="Assets\Scripts\Health\HeartCreator.cs" />
     <Compile Include="Assets\Scripts\BossRoom\Boss\BossMeleeModule.cs" />
     <Compile Include="Assets\Scripts\Enemy\IEnemy.cs" />
     <Compile Include="Assets\Scripts\ColorSystem\ColorInteractionEvent.cs" />
     <Compile Include="Assets\Scripts\Enemy\ProjectileController.cs" />
+    <Compile Include="Assets\Enemy\SummonEnemyScripts\Summoning\SummonerSpawnExecutor.cs" />
     <Compile Include="Assets\Particles\Scripts\AutoDestroyEffect.cs" />
     <Compile Include="Assets\Brawler Animations Sample\DisplayAnimation.cs" />
     <Compile Include="Assets\Scripts\BossRoom\Boss\BossWeakPoint.cs" />
@@ -83,17 +110,25 @@
     <Compile Include="Assets\Scripts\ColorSystem\ColorInteractionManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\RangeEnemy\RangeEnemyStunController.cs" />
     <Compile Include="Assets\Scripts\BossRoom\BossRoomController.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossPhaseOneAI\States\FinalBossPhaseOneIdleObserveState.cs" />
     <Compile Include="Assets\Scripts\Health\EnemyHealthSystem.cs" />
+    <Compile Include="Assets\Scripts\SpawnPoints\EnemyClearSpawnTrigger.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossDirector\FinalBossBattleDirector.cs" />
     <Compile Include="Assets\Scripts\Health\HealthFaceCam.cs" />
     <Compile Include="Assets\Scripts\Interact\IInteractable.cs" />
     <Compile Include="Assets\Scripts\BossRoom\Boss\BossCollisionHandler.cs" />
     <Compile Include="Assets\Scripts\ColorSystem\ColorInteractionType.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossUI\FinalBossVictoryUIController.cs" />
+    <Compile Include="Assets\Enemy\SummonEnemyScripts\Commanding\SummonerCommandingModule.cs" />
+    <Compile Include="Assets\DoubleL\Demo\DemoCameraController.cs" />
     <Compile Include="Assets\Scripts\ColorSystem\PlayerColorController.cs" />
+    <Compile Include="Assets\Enemy\SummonEnemyScripts\Commanding\CommandingConfig.cs" />
     <Compile Include="Assets\UnityTechnologies\StarterAssets\ThirdPersonController\Scripts\ThirdPersonController.cs" />
     <Compile Include="Assets\Scripts\Camera\ThirdPersonCam2.cs" />
     <Compile Include="Assets\Scripts\BossRoom\Boss\BossDamageGate.cs" />
     <Compile Include="Assets\Scripts\ColorSystem\ColorAutoChangeBehavior.cs" />
-    <Compile Include="Assets\Scripts\Enemy\ChasingEnemy2.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossMechanics\FinalBossResonancePillarHealth.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossPhases\FinalBossStageOneController.cs" />
     <Compile Include="Assets\Scripts\SpawnPoints\EnemySpawn.cs" />
     <Compile Include="Assets\Scripts\BossRoom\Boss\BossController.cs" />
     <Compile Include="Assets\Tutorial\TutorialScripts\RoomEntryTrigger.cs" />
@@ -104,37 +139,72 @@
     <Compile Include="Assets\Scripts\Diaogue\DialogueData.cs" />
     <Compile Include="Assets\UnityTechnologies\StarterAssets\Mobile\Scripts\Utilities\MobileDisableAutoSwitchControls.cs" />
     <Compile Include="Assets\Scripts\Health\HeartUIController.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossData\PhaseOne\FinalBossPhaseOneStrafePressureStateData.cs" />
+    <Compile Include="Assets\Enemy\SummonEnemyScripts\SummonerStateController.cs" />
     <Compile Include="Assets\Tutorial\TutorialScripts\TutorialTaskUI.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossData\PhaseOne\FinalBossPhaseOneAttackCommitStateData.cs" />
     <Compile Include="Assets\Tutorial\TutorialScripts\TutorialRoomController.cs" />
     <Compile Include="Assets\Tutorial\TutorialScripts\TutorialTask.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossMechanics\FinalBossStageTwoBarrier.cs" />
     <Compile Include="Assets\UnityTechnologies\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualTouchZone.cs" />
     <Compile Include="Assets\Scripts\ChatBubbleController.cs" />
     <Compile Include="Assets\Scripts\ColorSystem\PlayerAttackDetector.cs" />
     <Compile Include="Assets\Scripts\Enemy\ChasingEnemy\ChasingEnemyMovementController.cs" />
+    <Compile Include="Assets\Enemy\SummonEnemyScripts\Summoning\SummoningConfig.cs" />
     <Compile Include="Assets\Tutorial\TutorialScripts\TutorialPromptTrigger.cs" />
+    <Compile Include="Assets\Enemy\SummonEnemyScripts\Summoning\SummonerSummoningModule.cs" />
     <Compile Include="Assets\UnityTechnologies\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualButton.cs" />
     <Compile Include="Assets\Scripts\Enemy\ChasingEnemy\ChasingEnemyAnimationController.cs" />
     <Compile Include="Assets\Scripts\BossRoom\Boss\BossStunWindow.cs" />
     <Compile Include="Assets\UnityTechnologies\StarterAssets\InputSystem\StarterAssetsInputs.cs" />
     <Compile Include="Assets\Scripts\GameMenus\UIManager.cs" />
     <Compile Include="Assets\Scripts\Diaogue\DialogueManager.cs" />
+    <Compile Include="Assets\Enemy\SummonEnemyScripts\Idle\SummonerIdleModule.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossData\StageThree\FinalBossQTEInputType.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossData\PhaseOne\FinalBossPhaseOnePrepareAttackStateData.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossData\StageThree\FinalBossQTESequenceData.cs" />
     <Compile Include="Assets\Scripts\Ability\TargetSelector.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossPhases\FinalBossStageThreeSetupController.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossDirector\FinalBossStageBase.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossPhaseOneAI\FinalBossPhaseOneAIController.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossData\PhaseOne\FinalBossPhaseOneStunnedStateData.cs" />
     <Compile Include="Assets\Scripts\Interact\KnockbackCollisionDetector.cs" />
     <Compile Include="Assets\Scripts\Ability\ThrowObjectAbility.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossPhaseOneAI\States\FinalBossPhaseOneAttackCommitState.cs" />
     <Compile Include="Assets\Scripts\Camera\ThirdPersonMovement2.cs" />
     <Compile Include="Assets\Scripts\Enemy\CombatEnemy.cs" />
     <Compile Include="Assets\Scripts\Enemy\ChasingEnemy\ChasingEnemy.cs" />
+    <Compile Include="Assets\Enemy\SummonEnemyScripts\Idle\DetectionConfig.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossDirector\FinalBossFailCondition.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossPhaseOneAI\FinalBossPhaseOneHitbox.cs" />
+    <Compile Include="Assets\Enemy\SummonEnemyScripts\Commanding\ISummonerCommandBuffTarget.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossPhases\FinalBossStageTwoController.cs" />
+    <Compile Include="Assets\Enemy\SummonEnemyScripts\Alert\AlertConfig.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossPhaseOneAI\FinalBossPhaseOneState.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossPhaseOneAI\States\FinalBossPhaseOneStrafePressureState.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossPlayer\FinalBossPlayerActionLock.cs" />
     <Compile Include="Assets\Scripts\Enemy\BaseEnemy.cs" />
     <Compile Include="Assets\Scripts\Enemy\RangeEnemy\RangeEnemy.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossPhaseOneAI\States\FinalBossPhaseOneSpawnIntroState.cs" />
     <Compile Include="Assets\Scripts\Ability\SelectionVisualizer.cs" />
     <Compile Include="Assets\Scripts\Interact\NPCInteract.cs" />
     <Compile Include="Assets\Scripts\Health\PlayerHealthSystem.cs" />
     <Compile Include="Assets\Scripts\Health\HealthSystem.cs" />
+    <Compile Include="Assets\Enemy\SummonEnemyScripts\SelfDefense\SummonerSelfDefenseModule.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraDirectionHelper.cs" />
     <Compile Include="Assets\Tutorial\TutorialScripts\TutorialTaskManager.cs" />
     <Compile Include="Assets\Scripts\Interact\BilliardPhysicsHelper.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossPhaseOneAI\States\FinalBossPhaseOneStunnedState.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossDirector\FinalBossDamageGate.cs" />
     <Compile Include="Assets\Import assets\Kevin Iglesias\Human Animations\Scripts\SpineProxy.cs" />
+    <Compile Include="Assets\Enemy\SummonEnemyScripts\Idle\IdleConfig.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossMechanics\FinalBossShockwaveProjectile.cs" />
+    <Compile Include="Assets\Enemy\SummonEnemyScripts\SummonerHealthSystem.cs" />
     <Compile Include="Assets\Scripts\Enemy\RangeEnemy\RangeEnemyAttackController.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossData\PhaseOne\FinalBossPhaseOneRetreatResetStateData.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossMechanics\FinalBossResonancePillarReceiver.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossPhaseOneAI\States\FinalBossPhaseOneAttackRecoverState.cs" />
+    <Compile Include="Assets\Scripts\FinalBoss\FinalBossPhaseOneAI\States\FinalBossPhaseOneApproachState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -640,6 +710,10 @@
       <HintPath>Library\PackageCache\com.unity.visualscripting@7dcdc439b230\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@74deb55db2a0\Runtime\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>Library\PackageCache\com.unity.nuget.mono-cecil@d6f9955a5d5f\Mono.Cecil.dll</HintPath>
       <Private>False</Private>
@@ -1132,6 +1206,10 @@
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.1.0f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Behavior.SerializableGUID">
+      <HintPath>Library\ScriptAssemblies\Unity.Behavior.SerializableGUID.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.InputSystem.ForUI">
       <HintPath>Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll</HintPath>
       <Private>False</Private>
@@ -1142,6 +1220,14 @@
     </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.AppUI.MVVM">
+      <HintPath>Library\ScriptAssemblies\Unity.AppUI.MVVM.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.AppUI.Navigation.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.AppUI.Navigation.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.AI.Navigation">
@@ -1216,6 +1302,14 @@
       <HintPath>Library\ScriptAssemblies\Unity.Cinemachine.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.AppUI.Redux">
+      <HintPath>Library\ScriptAssemblies\Unity.AppUI.Redux.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Behavior.Serialization">
+      <HintPath>Library\ScriptAssemblies\Unity.Behavior.Serialization.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Collections">
       <HintPath>Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
       <Private>False</Private>
@@ -1236,6 +1330,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.Rendering.LightTransport.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Behavior.Serialization.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Behavior.Serialization.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Core">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
       <Private>False</Private>
@@ -1248,16 +1346,40 @@
       <HintPath>Library\ScriptAssemblies\Unity.Splines.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.AppUI.Undo">
+      <HintPath>Library\ScriptAssemblies\Unity.AppUI.Undo.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
       <HintPath>Library\ScriptAssemblies\Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Behavior.GraphFramework">
+      <HintPath>Library\ScriptAssemblies\Unity.Behavior.GraphFramework.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Behavior">
+      <HintPath>Library\ScriptAssemblies\Unity.Behavior.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.AppUI">
+      <HintPath>Library\ScriptAssemblies\Unity.AppUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.AppUI.Navigation">
+      <HintPath>Library\ScriptAssemblies\Unity.AppUI.Navigation.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Collections.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Collections.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Behavior.Authoring">
+      <HintPath>Library\ScriptAssemblies\Unity.Behavior.Authoring.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
@@ -1280,8 +1402,16 @@
       <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.Updater.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Muse.Behavior">
+      <HintPath>Library\ScriptAssemblies\Unity.Muse.Behavior.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Flow.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.AppUI.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.AppUI.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
@@ -1330,6 +1460,14 @@
     </Reference>
     <Reference Include="Unity.AI.Navigation.Editor.ConversionSystem">
       <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.Editor.ConversionSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Behavior.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Behavior.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.AppUI.Redux.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.AppUI.Redux.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">

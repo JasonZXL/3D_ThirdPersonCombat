@@ -16,7 +16,6 @@ public class ThrowObjectAbility : MonoBehaviour
 {
     [Header("Input")]
     [SerializeField] private KeyCode abilityKey = KeyCode.Mouse1;
-    [SerializeField] private string abilityInputAction = "Ability";
     [SerializeField] private bool useNewInputSystem = false;
 
     [Header("Pickup Settings")]

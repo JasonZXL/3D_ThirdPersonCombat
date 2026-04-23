@@ -11,7 +11,6 @@ public class GameOver : MonoBehaviour
     [SerializeField] private Button quitButton;              // 退出游戏按钮
     
     [Header("游戏结束设置")]
-    [SerializeField] private string gameOverMessage = "游戏失败"; // 游戏结束消息
     [SerializeField] private string menuSceneName = "MenuScene";  // 菜单场景名称
     
     [Header("调试设置")]

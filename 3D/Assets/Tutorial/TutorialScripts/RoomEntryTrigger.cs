@@ -42,21 +42,4 @@ public class RoomEntryTrigger : MonoBehaviour
             GetComponent<Collider>().enabled = false;
         }
     }
-
-    private void OnDrawGizmos()
-    {
-        // 在场景视图中显示触发器区域
-        Collider collider = GetComponent<Collider>();
-        if (collider != null)
-        {
-            Gizmos.color = new Color(0, 1, 0, 0.3f);
-            Gizmos.DrawCube(transform.position + collider.bounds.center - transform.position, 
-                           collider.bounds.size);
-            
-            // 显示房间名称
-            GUIStyle style = new GUIStyle();
-            style.normal.textColor = Color.green;
-            UnityEditor.Handles.Label(transform.position + Vector3.up, $"Room: {roomName}");
-        }
-    }
 }

@@ -620,9 +620,6 @@ PrefabInstance:
       addedObject: {fileID: 7746009728227753166}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2d226e59912d0014fbf2646ed5c4b916, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -5986641078511277567}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2d226e59912d0014fbf2646ed5c4b916, type: 3}
-      insertIndex: -1
       addedObject: {fileID: -1359171037536210853}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2d226e59912d0014fbf2646ed5c4b916, type: 3}
       insertIndex: -1
@@ -919,27 +916,6 @@ MonoBehaviour:
   gizmoRayColor: {r: 0, g: 1, b: 1, a: 1}
   gizmoHitColor: {r: 1, g: 0, b: 0, a: 1}
   gizmoSafeColor: {r: 0, g: 1, b: 0, a: 1}
---- !u!114 &-5986641078511277567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3589885210564524569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d19189d71d0191459b1d89fee5b09c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialColor: 0
-  showDebugLogs: 0
-  movementController: {fileID: 1129055226370033618}
-  attackController: {fileID: 4445115603465425846}
-  stunController: {fileID: -4369047124127619348}
-  animationController: {fileID: -1359171037536210853}
-  knockbackSystem: {fileID: 7746009728227753166}
-  useBuiltInAttack: 1
-  checkComponentReferences: 1
 --- !u!114 &-1359171037536210853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -990,6 +966,7 @@ MonoBehaviour:
   moveSpeed: 3
   turnSpeed: 3
   stoppingDistance: 1.5
+  playerMoveThreshold: 1.5
   animationController: {fileID: 0}
   showDebugLogs: 1
 --- !u!114 &-4369047124127619348

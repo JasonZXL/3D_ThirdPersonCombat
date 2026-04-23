@@ -4,7 +4,8 @@ public class BaseEnemy : MonoBehaviour, IEnemy
 {
     [Header("基础敌人设置")]
     [SerializeField] protected ColorType initialColor = ColorType.Red;
-    
+    [SerializeField] protected bool useRandomInitialColor = true;
+    [SerializeField] [Range(0f, 1f)] protected float redColorChance = 0.5f;
     [Header("调试")]
     [SerializeField] protected bool showDebugLogs = true;
     
@@ -23,14 +24,19 @@ public class BaseEnemy : MonoBehaviour, IEnemy
         }
         
         // 设置初始颜色
-        colorComponent.CurrentColor = initialColor;
+        ColorType finalInitialColor = GetInitialColorToApply();
+        colorComponent.CurrentColor = finalInitialColor;
         
         Debug.Log($"👹 基础敌人初始化: {gameObject.name}, 颜色: {initialColor}");
     }
-    
-    protected virtual void OnDestroy()
+    // 获取初始颜色的方法
+    protected virtual ColorType GetInitialColorToApply()
     {
-        // 清理工作
+        if (!useRandomInitialColor)
+            return initialColor;
+
+        float roll = Random.value;
+        return roll <= redColorChance ? ColorType.Red : ColorType.Blue;
     }
     
     public virtual void OnColorInteraction(ColorInteractionEvent interaction)

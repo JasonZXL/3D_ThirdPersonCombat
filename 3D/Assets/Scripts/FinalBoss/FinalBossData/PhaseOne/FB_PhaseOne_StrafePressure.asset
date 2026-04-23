@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 029d7eac30889824c96248c1ff949d85, type: 3}
+  m_Name: FB_PhaseOne_StrafePressure
+  m_EditorClassIdentifier: 
+  debugName: PhaseOneState
+  strafeDurationMin: 0.8
+  strafeDurationMax: 1.6
+  waitDurationMin: 1
+  waitDurationMax: 1.5
+  strafeSpeed: 3.25
+  forwardMoveSpeed: 3.8
+  forwardMoveChance: 0.34
+  closeRangeForwardChanceMultiplier: 0.35
+  sideMovesBeforeForwardBonus: 2
+  forwardChanceBonusAfterSideMoves: 0.3
+  preferredRadius: 3.2
+  faceRotationSpeed: 720
+  specialAttackCooldown: 3
+  specialAttackRollInterval: 1
+  surpriseAttackChance: 0.6
+  surpriseCastingDuration: 0.45
+  surpriseFrontRingRadius: 2.25
+  surpriseFrontArcDegrees: 120
+  surpriseFrontOffsetFromPlayer: 1.2
+  surpriseAnchorPauseDuration: 0.55
+  surpriseBehindDistance: 1.35
+  surpriseBehindSpreadRadius: 0.5
+  tripleShockwaveChance: 0.4
+  shockwaveCastingDuration: 0.5
+  shockwaveCount: 3
+  shockwaveInterval: 0.8
+  shockwaveRecoverDuration: 0.4
+  rangedShotChance: 0.7
+  rangedShotWindup: 0.35
+  rangedShotRecoverDuration: 0.3

@@ -9513,7 +9513,7 @@ PrefabInstance:
       objectReference: {fileID: 23800000, guid: b6ab30cbc12f79f448829e6c112770d2, type: 2}
     - target: {fileID: 4621256606866277952, guid: 3955b521e0db8b4439552b5fb38d68f7, type: 3}
       propertyPath: repulseForce
-      value: 50
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4621256606866277952, guid: 3955b521e0db8b4439552b5fb38d68f7, type: 3}
       propertyPath: showDebugLogs

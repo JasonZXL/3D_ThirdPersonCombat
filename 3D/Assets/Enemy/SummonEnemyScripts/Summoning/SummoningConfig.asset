@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c634cfb6c27c9a46a6c0f5afd87cfff, type: 3}
+  m_Name: SummoningConfig
+  m_EditorClassIdentifier: 
+  enableSummoningDebug: 1
+  summoningDuration: 3
+  summonEndDuration: 0.5
+  keepFacingPlayerDuringSummoning: 1
+  summoningTurnSpeed: 2
+  summonCount: 3
+  useFixedSpawnPoints: 0
+  spawnRadius: 4
+  playSummonSound: 1
+  playSummonEffect: 0
+  useSummonStartTrigger: 1
+  summonStartTriggerName: SummonStart
+  useSummonLoopBool: 1
+  summonLoopBoolName: SummonLoop
+  useSummonEndTrigger: 1
+  summonEndTriggerName: SummonEnd

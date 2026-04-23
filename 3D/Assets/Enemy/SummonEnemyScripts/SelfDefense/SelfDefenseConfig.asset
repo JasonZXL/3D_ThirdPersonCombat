@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d185e146c0b2b774297baf144249aecf, type: 3}
+  m_Name: SelfDefenseConfig
+  m_EditorClassIdentifier: 
+  enableSelfDefenseDebug: 1
+  pressureDistance: 2
+  attackReadyDistance: 4
+  attackRange: 1.5
+  selfDefenseExitDistance: 8
+  repositionDistance: 2.5
+  repositionDuration: 1
+  repositionMoveSpeed: 3
+  useBackstepBool: 1
+  backstepBoolName: Backstep
+  prepareAttackDuration: 0.5
+  useWarningEffect: 1
+  approachDistance: 3
+  approachDuration: 1.2
+  approachMoveSpeed: 3
+  useApproachMoveAnim: 1
+  approachMoveBoolName: ApproachMove
+  attackDuration: 0.6
+  usePunchTrigger: 1
+  punchTriggerName: Punch
+  pauseDuration: 0.8
+  selfDefenseTurnSpeed: 8
